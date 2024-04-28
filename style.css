@@ -81,6 +81,7 @@ a:link, a:visited, a:active {
 .search-input-container i:hover {
   color: #BE123C;
   transition: .5s;
+  cursor: pointer;
 }
 
 .user-data {
@@ -119,10 +120,124 @@ ul {
 }
 
 .banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
   width: 100%;
   height: 100%;
   background-image: url('assets/bg-pele.jpg');
   background-position: center;
   background-size: contain;
-  opacity: 25%;
 }
+
+.banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.movie-description {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 1rem;
+  margin-left: 6.125rem;
+  z-index: 1;
+  color: white;
+}
+
+.movie-description h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.banner-movie-details {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.banner-movie-review, .banner-movie-category {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 0.75rem;
+}
+
+.banner-movie-category i {
+  font-size: 1.8rem;
+}
+
+.movie-description p {
+  font-size: 0.875rem;
+  font-weight: 400;
+  max-width: 25vw;
+  color: #D1D5DB;
+}
+
+.movie-description button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border-radius: 0.25rem;
+  background-color: #BE123C;
+}
+
+.movie-description button i {
+  font-size: 1.25rem;
+  color: white;
+}
+
+.movie-description button:hover {
+  transition: 0.5s;
+  cursor: pointer;
+  background-color: #92082b;
+}
+
+.pagination-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  font-size: 0.876rem;
+  font-weight: 600;
+  color: #9CA3AF;
+  z-index: 1;
+  margin-right: 1.5rem;
+}
+
+.pagination-box span:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.selected-movie {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+}
+
+.selected-movie div {
+  position: absolute;
+  width: 1rem;
+  height: 0.25rem;
+  right: 1rem;
+  background-color: white;
+  border-radius: 0.375rem;
+}
+
