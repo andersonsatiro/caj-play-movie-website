@@ -10,6 +10,7 @@
     <title>Cajúplay - movie website</title>
 
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="script.js"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +19,6 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-
     <section class="header-container">
 
       <header>
@@ -40,72 +40,9 @@
         </div>
       </header>
 
-      <ul>
-        <li class="banner" index="1">
-          <main class="movie-description">
-            <h1>Pelé</h1>
-
-            <section class="banner-movie-details">
-              <div class="banner-movie-review">
-                <a href="https://www.imdb.com/" target="_blank">
-                  <img
-                  src="/assets/imdb.svg"
-                  alt="Logo do IMDB - base de dados online de informação sobre cinema, TV, música e games"
-                >
-                </a>
-                <span>7.36 / 10</span>
-              </div>
-
-              <div class="banner-movie-category">
-                <i class="ph-thin ph-film-slate"></i>
-                <span>Documentário</span>
-              </div>
-            </section>
-
-            <p>
-              Documentário que retrata a vida de Pelé, da busca pela perfeição à condição de mito. Abrangendo um
-              extraordinário período de 12 anos, a produção mostra como o único jogador a vencer três Copas do Mundo
-              passou de astro do futebol em 1958 a herói nacional em 1970, uma época radical e turbulenta no Brasil.
-            </p>
-            
-            <button>
-              <i class="ph-fill ph-play-circle"></i>
-              <span>SAIBA MAIS</span>
-            </button>
-          </main>
-
-          <aside class="pagination-box">
-            <div class="movie-options selected-movie">
-              <div></div>
-              <span>1</span>
-            </div>
-
-            <div class="movie-options">
-              <span>2</span>
-            </div>
-
-            <div class="movie-options">
-              <span>3</span>
-            </div>
-
-            <div class="movie-options">
-              <span>4</span>
-            </div>
-          </aside>
-        </li>
+      <ul id="list-banner-movies">
       </ul>
 
     </section>
-
-
-
-
-
-
-
-
-
-
   </body>
-  <script></script>
 </html>
