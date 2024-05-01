@@ -19,6 +19,22 @@ const APICall = async (url) => {
   }
 }
 
+const changeBannerMovie = (movie_number) => {
+  movie_number--
+  const list_items = document.getElementsByClassName('banner') 
+
+  for(let i = 0; i < list_items.length; i++){
+    const li = list_items[i]
+    const item_index = li.getAttribute('index')
+
+    if(item_index == movie_number){
+      li.style.display = ''
+    } else {
+      li.style.display = 'none'
+    }
+  }
+}
+
 const renderBannerItem = (movie, index) => {
   return  `
     <li
@@ -61,21 +77,23 @@ const renderBannerItem = (movie, index) => {
       <aside class="pagination-box">
         <div class="movie-options selected-movie">
           <div></div>
-          <span>1</span>
+          <span onclick={changeBannerMovie(1)}>1</span>
         </div>
 
         <div class="movie-options">
-          <span>2</span>
+          <span onclick={changeBannerMovie(2)}>2</span>
         </div>
 
         <div class="movie-options">
-          <span>3</span>
+          <span onclick={changeBannerMovie(3)}>3</span>
         </div>
 
         <div class="movie-options">
-          <span>4</span>
+          <span onclick={changeBannerMovie(4)}>4</span>
         </div>
       </aside>
+
+      <div class="banner-overlay"></div>
     </li>
   `
 }
@@ -84,6 +102,7 @@ const createBannerItems = () => {
   const ul = document.getElementById('list-banner-movies')
   ul.innerHTML = banner_movies.map((movie, index) => renderBannerItem(movie, index))
   .join(' ')
+  changeBannerMovie(1)
 }
 
 Promise.all(ID_movies_selected_banner.map((movieID) => {
