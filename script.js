@@ -23,6 +23,7 @@ const changeBannerMovie = (movie_number) => {
   movie_number--
   const list_items = document.getElementsByClassName('banner') 
 
+  
   for(let i = 0; i < list_items.length; i++){
     const li = list_items[i]
     const item_index = li.getAttribute('index')
@@ -31,6 +32,22 @@ const changeBannerMovie = (movie_number) => {
       li.style.display = ''
     } else {
       li.style.display = 'none'
+    }
+
+    for(let j = 0; j < list_items.length; j++){
+      const parent_div = document.getElementsByClassName(`banner${j + 1}`)
+
+      const div = document.createElement('div')
+    
+      j == movie_number
+        ? (
+          parent_div[j].classList.add('selected-movie'),
+          parent_div[j].insertBefore(div, parent_div[j].firstChild)
+        )
+        : (
+          parent_div[j].classList.remove('selected-movie'),
+          div.remove() 
+        )      
     }
   }
 }
@@ -63,9 +80,7 @@ const renderBannerItem = (movie, index) => {
         </section>
 
         <p>
-          Documentário que retrata a vida de Pelé, da busca pela perfeição à condição de mito. Abrangendo um
-          extraordinário período de 12 anos, a produção mostra como o único jogador a vencer três Copas do Mundo
-          passou de astro do futebol em 1958 a herói nacional em 1970, uma época radical e turbulenta no Brasil.
+          ${movie.overview}
         </p>
         
         <button>
@@ -75,21 +90,20 @@ const renderBannerItem = (movie, index) => {
       </main>
 
       <aside class="pagination-box">
-        <div class="movie-options selected-movie">
-          <div></div>
-          <span onclick={changeBannerMovie(1)}>1</span>
+        <div class="movie-options banner1">
+          <span onclick="changeBannerMovie(1)">1</span>
         </div>
 
-        <div class="movie-options">
-          <span onclick={changeBannerMovie(2)}>2</span>
+        <div class="movie-options banner2">
+          <span onclick="changeBannerMovie(2)">2</span>
         </div>
 
-        <div class="movie-options">
-          <span onclick={changeBannerMovie(3)}>3</span>
+        <div class="movie-options banner3">
+          <span onclick="changeBannerMovie(3)">3</span>
         </div>
 
-        <div class="movie-options">
-          <span onclick={changeBannerMovie(4)}>4</span>
+        <div class="movie-options banner4">
+          <span onclick="changeBannerMovie(4)">4</span>
         </div>
       </aside>
 
