@@ -237,6 +237,160 @@ ul {
   height: 0.30rem;
   right: 1rem;
   background-color: white;
-  border-radius: 0.375rem;
+  border-radius: 0.5rem;
 }
 
+
+
+@media (max-width: 1200px) {
+
+  .header-container {
+    height: 30rem;
+  }
+
+  header {
+    justify-content: center;
+  }
+
+  .navigation {
+    display: none;
+  }
+
+  .search-input-container {
+    width: 40%;
+  }
+
+  .movie-description p {
+    font-size: 0.78rem;
+    max-width: 40vw;
+  }
+}
+
+@media (max-width: 768px){
+
+  .header-container {
+    height: 25rem;
+  }
+
+  .movie-description {
+    margin-top: 2rem;
+  }
+
+  .movie-description h1 {
+    font-size: 2.3rem;
+  }
+
+  .movie-description p {
+    font-size: 0.6rem;
+    max-width: 50vw;
+  }
+}
+
+@media (max-width: 668px){
+
+  .header-container {
+    height: 20rem;
+  }
+
+  .search-input-container input {
+    max-height: 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  .search-input-container i {
+    font-size: 0.8rem;
+  }
+
+  .user-data span {
+    font-size: .9rem;
+  }
+
+  .user-data img {
+    width: 1.4rem;
+  }
+
+  .movie-description {
+    margin-top: 4rem;
+    margin-left: 2.125rem;
+  }
+
+  .movie-description h1 {
+    font-size: 1.5rem;
+  }
+
+  .banner-movie-review, .banner-movie-category {
+    gap: 0.6rem;
+    font-size: 0.5rem;
+  }
+
+  .banner-movie-review img {
+    max-width: 1.5rem;
+  }
+
+  .banner-movie-category i {
+    font-size: 1rem;
+  }
+
+
+  .movie-description p {
+    font-size: 0.6rem;
+    max-width: 50vw;
+    max-height: 4.9rem;
+    overflow: hidden;
+  }
+
+  .movie-description button {
+    font-size: 0.65rem;
+    padding: 0.4rem 0.8rem 0.4rem 0.8rem;
+  }
+  
+  .movie-description button i {
+    font-size: 1rem;
+  }
+
+  .pagination-box {
+    font-size: 0.6rem;
+    font-weight: 600;
+  }
+
+  .selected-movie div {
+    width: 0.7rem;
+    height: 0.15rem;
+    right: 1rem;
+    background-color: white;
+    border-radius: 0.5rem;
+  }
+}
+
+@media (max-width: 568px){
+
+  .header-container {
+    height: 25rem;
+  }
+
+  header {
+    flex-direction: column-reverse;
+    gap: 1rem;
+  }
+
+  .banner {
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .search-input-container {
+    width: 70%;
+  }
+}
+
+@media (max-width: 430px){
+  .banner {
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .movie-description p {
+    font-size: 0.6rem;
+    max-width: 70vw;
+  }
+}
