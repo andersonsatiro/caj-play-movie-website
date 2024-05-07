@@ -6,6 +6,36 @@ const image_base_URL = 'https://image.tmdb.org/t/p/w500'
 const ID_movies_selected_banner = [ '785976', '446159', '755339', '7343']
 let banner_movies = []
 
+const movie_sessions = [
+  {
+    header: {
+      icon_class: "ph ph-fire",
+      title: "Em alta no mundo",
+      color_one: "#2203FF",
+      color_two: "#C40D60",
+      color_three: "",
+    },
+  },
+  {
+    header: {
+      icon_class: "ph ph-island",
+      title: "Da terra do cajú",
+      color_one: "#002776",
+      color_two: "#009C3B",
+      color_three: "#FFDF00",
+    },
+  }, 
+  {
+    header: {
+      icon_class: "ph ph-monitor-play",
+      title: "Da cajúplay para você",
+      color_one: "#2203FF",
+      color_two: "#C40D60",
+      color_three: "",
+    },
+  }
+]
+
 const APICall = async (url) => {
   try{
     const response = await fetch(url)
