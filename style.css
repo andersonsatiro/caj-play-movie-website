@@ -5,6 +5,10 @@
   list-style: none;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 .header-container {
   position: relative;
   width: 100vw;
@@ -241,22 +245,36 @@ ul {
   border-radius: 0.5rem;
 }
 
-/* MAIN */
+/*MAIN*/
 
-.movie_sessions {
-  margin-top: 4.375rem;
-  margin-bottom: 4.375rem;
-  margin-left: 2rem;
-  margin-right: 2rem;
+.movie-sessions {
+  margin: 4.375rem;
 }
 
-.movie_categorie_section {
+.movie-categorie-section {
   display: flex;
   flex-direction: column;
   gap: 2.75rem;
 }
 
-.movie_sessions header {
+.movie-categorie-section div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.movie-categorie-section div i {
+  font-size: 2rem;
+}
+
+.movie-categorie-section div i:hover {
+  color: #92082b;
+  cursor: pointer;
+}
+
+
+.movie-sessions header {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -267,18 +285,19 @@ ul {
   color: #2203FF;
 }
 
-.movie_sessions header h2 {
-  font-size: 2rem;
+.movie-sessions header h2 {
+  font-size: 1.7rem;
   font-weight: 700;
 }
 
-.movie_sessions span {
+.movie-sessions hr {
   flex-grow: 1;
   height: 2px;
+  border: none;
   background-image: linear-gradient(to right, #2203FF, #C40D60);
 }
 
-.movie_sessions a {
+.movie-sessions a {
   display: flex;
   align-items: center;
   gap: 0.2rem;
@@ -286,15 +305,62 @@ ul {
   font-weight: 400;
 }
 
-.movie_sessions a i {
+.movie-sessions a i {
   font-weight: 800;
 }
 
-.movie_sessions a:hover {
+.movie-sessions a:hover {
   color: #C40D60;
   font-weight: 500;
   cursor: pointer;
   transition: .7s;
+}
+
+#movie-categorie-list {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  overflow-x: hidden;
+  transition:  5s;
+}
+
+#movie-categorie-list li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  min-width: 10rem;
+  min-height: 13rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  max-width: 95%;
+  transition:  1s;
+
+  color: white;
+  background-color: #2203FF;
+}
+
+#movie-categorie-list main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+#movie-categorie-list main i {
+  font-size: 1.8rem;
+}
+
+#movie-categorie-list main h3 {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+#movie-categorie-list p {
+  font-size: .9rem;
+  font-weight: 300;
 }
 
 @media (max-width: 1200px) {

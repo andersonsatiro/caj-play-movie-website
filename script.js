@@ -5,6 +5,7 @@ const image_base_URL = 'https://image.tmdb.org/t/p/w500'
 
 const ID_movies_selected_banner = [ '785976', '446159', '755339', '7343']
 let banner_movies = []
+let favorite_category_movies = []
 
 const movie_sessions = [
   {
@@ -158,3 +159,68 @@ Promise.all(ID_movies_selected_banner.map((movieID) => {
   createBannerItems()
 })
 .catch(error => {console.error("Erro ao buscar dados dos filmes!", error)})
+
+const renderCategoryMovieCard = ({name}) => {
+  return `
+    <li>
+    <span></span>
+
+    <main>
+      <i class="ph-thin ph-popcorn"></i>
+      <h3>${name.toLowerCase()}</h3>
+    </main>
+
+    <p>tem no <strong>cajú</strong>play</p>
+    </li>
+  `
+}
+
+APICall(`${base_URL}genre/movie/list?${parameters}`).then(({genres}) => {
+  favorite_category_movies = genres
+  const ul = document.getElementById('movie-categorie-list')
+  ul.innerHTML = favorite_category_movies.map((gender) => renderCategoryMovieCard(gender))
+  .join('')
+})
+
+const createMovieScrollHandler = () => {
+  let current_index = 0;
+
+  return(ulID, direction) => {
+    const list_movies = document.querySelectorAll(`#${ulID} li`)
+    const li_width = list_movies[0].offsetWidth + 32
+
+    const screen_width = window.innerWidth
+    let number_visible_movies = 4
+
+    screen_width < 1000 && (number_visible_movies = 3)
+    screen_width < 820 && (number_visible_movies = 2)
+    screen_width < 630 && (number_visible_movies = 1)
+    
+    direction === "next"
+      ? current_index++
+      : current_index--
+
+    current_index = Math.min(
+      Math.max(current_index, 0),
+      Math.floor(list_movies.length / number_visible_movies)
+    )
+
+    const translateValue = -(current_index * number_visible_movies) * li_width;
+    for(let i = 0; i < list_movies.length; i++){
+      list_movies[i].style.transform = `translateX(${translateValue}px)`;
+    }  
+  }
+}
+
+const handleMovieScrolling1 = createMovieScrollHandler();
+
+const next_category_list = document.getElementById('next-category')
+next_category_list.addEventListener('click',
+  () => handleMovieScrolling1("movie-categorie-list", "next")
+)
+
+const prev_category_list = document.getElementById('prev-category')
+prev_category_list.addEventListener('click',
+  () => handleMovieScrolling1("movie-categorie-list", "prev")
+)
+
