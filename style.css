@@ -247,57 +247,59 @@ ul {
 
 /*MAIN*/
 
-.movie-sessions {
+#movie-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
   margin: 4.375rem;
 }
 
-.movie-categorie-section {
+#movie-sections section {
   display: flex;
   flex-direction: column;
   gap: 2.75rem;
 }
 
-.movie-categorie-section div {
+#movie-sections section div {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 2rem;
 }
 
-.movie-categorie-section div i {
+#movie-sections section div i {
   font-size: 2rem;
 }
 
-.movie-categorie-section div i:hover {
+#movie-sections section div i:hover {
   color: #92082b;
   cursor: pointer;
 }
 
-
-.movie-sessions header {
+#movie-sections header {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.mask-happy {
+.mask-happy, .fire, .island, .monitor-play {
   font-size: 2rem;
   color: #2203FF;
 }
 
-.movie-sessions header h2 {
+#movie-sections header h2 {
   font-size: 1.7rem;
   font-weight: 700;
 }
 
-.movie-sessions hr {
+#movie-sections hr {
   flex-grow: 1;
   height: 2px;
   border: none;
   background-image: linear-gradient(to right, #2203FF, #C40D60);
 }
 
-.movie-sessions a {
+#movie-sections a {
   display: flex;
   align-items: center;
   gap: 0.2rem;
@@ -305,11 +307,11 @@ ul {
   font-weight: 400;
 }
 
-.movie-sessions a i {
+#movie-sections a i {
   font-weight: 800;
 }
 
-.movie-sessions a:hover {
+#movie-sections a:hover {
   color: #C40D60;
   font-weight: 500;
   cursor: pointer;

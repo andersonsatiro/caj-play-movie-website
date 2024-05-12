@@ -7,10 +7,11 @@ const ID_movies_selected_banner = [ '785976', '446159', '755339', '7343']
 let banner_movies = []
 let favorite_category_movies = []
 
-const movie_sessions = [
+const movie_sections = [
   {
     header: {
-      icon_class: "ph ph-fire",
+      class: "trending-movies-section",
+      icon_class: "ph ph-fire fire",
       title: "Em alta no mundo",
       color_one: "#2203FF",
       color_two: "#C40D60",
@@ -19,7 +20,8 @@ const movie_sessions = [
   },
   {
     header: {
-      icon_class: "ph ph-island",
+      class: "brazilian-movies-section",
+      icon_class: "ph ph-island island",
       title: "Da terra do cajú",
       color_one: "#002776",
       color_two: "#009C3B",
@@ -28,7 +30,8 @@ const movie_sessions = [
   }, 
   {
     header: {
-      icon_class: "ph ph-monitor-play",
+      class: "movies-section-for-you",
+      icon_class: "ph ph-monitor-play monitor-play",
       title: "Da cajúplay para você",
       color_one: "#2203FF",
       color_two: "#C40D60",
@@ -224,3 +227,50 @@ prev_category_list.addEventListener('click',
   () => handleMovieScrolling1("movie-categorie-list", "prev")
 )
 
+const renderMainSections = ({header}) => {
+  const hr_gradient = header.color_three !== ""
+    ? `background-image: linear-gradient(to right, ${header.color_one}, ${header.color_two}, ${header.color_three})`
+    : ''
+
+  return `
+    <section class="${header.class}">
+      <header>
+        <i
+          class="${header.icon_class}"
+          style="color: ${header.color_two}"
+        >
+        </i>
+
+        <h2>${header.title}</h2>
+
+        <hr style="${hr_gradient}">
+        
+        <a>
+          <p>ver mais</p>
+          <i class="ph ph-caret-right"></i>
+        </a>
+      </header>
+      
+      <div>
+        <i
+          id="prev-category"
+          class="ph ph-caret-left"
+        >
+        </i>
+
+        <ul id="movie-categorie-list">
+        </ul>
+
+        <i
+          id="next-category"
+          class="ph ph-caret-right"
+        >
+        </i>
+      </div>
+    </section>
+  `
+}
+
+
+let main = document.getElementById('movie-sections')
+main.innerHTML += movie_sections.map(section => renderMainSections(section)).join(' ')
