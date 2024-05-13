@@ -254,7 +254,8 @@ ul {
   margin: 4.375rem;
 }
 
-#movie-sections section {
+.movie-categorie-section, .trending-movies-section,
+.brazilian-movies-section, .movies-section-for-you {
   display: flex;
   flex-direction: column;
   gap: 2.75rem;
@@ -323,7 +324,6 @@ ul {
   align-items: center;
   gap: 2rem;
   overflow-x: hidden;
-  transition:  5s;
 }
 
 #movie-categorie-list li {
@@ -334,13 +334,13 @@ ul {
 
   min-width: 10rem;
   min-height: 13rem;
+  max-width: 95%;
   padding-top: 1rem;
   padding-bottom: 1rem;
-
-  max-width: 95%;
   transition:  1s;
 
   color: white;
+  border-radius: .2rem;
   background-color: #2203FF;
 }
 
@@ -363,6 +363,45 @@ ul {
 #movie-categorie-list p {
   font-size: .9rem;
   font-weight: 300;
+}
+
+/* MAIN - LIST MOVIES*/
+
+.list-of-movies {
+  display: flex;
+  align-items: start;
+  gap: 2rem;
+  overflow-x: hidden;
+  max-width: 95%;
+}
+
+.list-of-movies .poster {
+  min-width: 12rem;
+  min-height: 15rem;
+}
+
+.list-of-movies .poster img {
+  max-width: 100%;
+  border-radius: .2rem;
+}
+
+.list-of-movies section {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+}
+
+.list-of-movies section time,  .list-of-movies p {
+  font-weight: 400;
+  color: #6B7280;
+}
+
+.list-of-movies section h3 {
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 @media (max-width: 1200px) {

@@ -11,31 +11,40 @@ const movie_sections = [
   {
     header: {
       class: "trending-movies-section",
+      ul_ID: "trending-movies-list",
+      ul_class: "list-of-movies",
       icon_class: "ph ph-fire fire",
       title: "Em alta no mundo",
       color_one: "#2203FF",
       color_two: "#C40D60",
       color_three: "",
+      URL_request: `${base_URL}movie/popular?${parameters}`,
     },
   },
   {
     header: {
       class: "brazilian-movies-section",
+      ul_ID: "brazilian-movies-list",
+      ul_class: "list-of-movies",
       icon_class: "ph ph-island island",
       title: "Da terra do cajú",
       color_one: "#002776",
       color_two: "#009C3B",
       color_three: "#FFDF00",
+      URL_request: `${base_URL}discover/movie?${parameters}&with_original_language=pt&region=BR`,
     },
   }, 
   {
     header: {
       class: "movies-section-for-you",
+      ul_ID: "movies-for-you-list",
+      ul_class: "list-of-movies",
       icon_class: "ph ph-monitor-play monitor-play",
       title: "Da cajúplay para você",
       color_one: "#2203FF",
       color_two: "#C40D60",
       color_three: "",
+      URL_request: `${base_URL}discover/movie?${parameters}&with_genres=99`,
     },
   }
 ]
@@ -258,7 +267,7 @@ const renderMainSections = ({header}) => {
         >
         </i>
 
-        <ul id="movie-categorie-list">
+        <ul id="${header.ul_ID}" class="${header.ul_class}">
         </ul>
 
         <i
@@ -271,6 +280,121 @@ const renderMainSections = ({header}) => {
   `
 }
 
+const table = {
+  "01": "janeiro",
+  "02": "fevereiro",
+  "03": "março",
+  "04": "abril",
+  "05": "maio",
+  "06": "junho",
+  "07": "julho",
+  "08": "agosto",
+  "09": "setembro",
+  "10": "outubro",
+  "11": "novembro",
+  "12": "dezembro"
+}
+
+const reorderingReleaseData = (date) => {
+  const months = ['janeiro', 'fevereiro', 'março', 'abril', 'maio',
+  'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro']
+
+  const year = date.slice(0,4)
+  const month = months[parseInt(date.slice(5,7), 10) - 1]
+
+  return `Lançado em ${month} de ${year}`
+}
+
+const renderMovieListItems = (movie) => {
+  return `
+    <li>
+      <div class="poster">
+        <img
+          src="${image_base_URL}${movie.poster_path}"
+          alt="poster do filme ${movie.title}"       
+        />
+      </div>
+
+      <section>
+        <time datetime="${movie.release_date}">
+          ${reorderingReleaseData(movie.release_date)}
+        </time>
+
+        <h3>${movie.title}</h3>
+
+        <p>
+          ${movie.overview.slice(0, 100)}...
+          <a href="">continuar</a>
+        </p>
+
+        <div>
+          <img
+            src="assets/imdb.svg"
+            alt="Logo do IMDB - base de dados online de informação sobre cinema, TV, música e games"
+          >
+
+          <span>${movie.vote_average.toFixed(1)} / 10</span>
+        </div>
+      </section>
+    </li>
+  `
+}
+
+/*
+
+adult
+: 
+false
+backdrop_path
+: 
+"/bwj3rK2hc65eLwaQWUpendaphlE.jpg"
+genre_ids
+: 
+[99]
+id
+: 
+1280368
+original_language
+: 
+"es"
+original_title
+: 
+"Operación Esperanza: Los niños perdidos en el Amazonas"
+overview
+: 
+""
+popularity
+: 
+55.014
+poster_path
+: 
+"/uBOS7RbRFmEkXQ98drgL9H4jjXc.jpg"
+release_date
+: 
+"2024-04-26"
+title
+: 
+"Operación Esperanza: Los niños perdidos en el Amazonas"
+video
+: 
+false
+vote_average
+: 
+9.667
+vote_count
+: 
+12
+
+*/
 
 let main = document.getElementById('movie-sections')
 main.innerHTML += movie_sections.map(section => renderMainSections(section)).join(' ')
+
+movie_sections.map(({header}) => {
+  const ul = document.getElementById(header.ul_ID)
+
+  APICall(header.URL_request)
+  .then(({ results }) => {
+    ul.innerHTML = results.map((movie) => renderMovieListItems(movie)).join('')
+  })
+})
