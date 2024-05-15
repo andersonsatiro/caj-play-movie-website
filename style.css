@@ -250,7 +250,7 @@ ul {
 #movie-sections {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 4.375rem;
   margin: 4.375rem;
 }
 
@@ -261,7 +261,7 @@ ul {
   gap: 2.75rem;
 }
 
-#movie-sections section div {
+.movie-categorie-section div {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -300,7 +300,7 @@ ul {
   background-image: linear-gradient(to right, #2203FF, #C40D60);
 }
 
-#movie-sections a {
+#movie-sections header a {
   display: flex;
   align-items: center;
   gap: 0.2rem;
@@ -375,6 +375,14 @@ ul {
   max-width: 95%;
 }
 
+.movie-section-main-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  z-index: 0;
+}
+
 .list-of-movies .poster {
   min-width: 12rem;
   min-height: 15rem;
@@ -403,6 +411,21 @@ ul {
   font-size: 1rem;
   font-weight: 700;
 }
+
+.list-of-movies section a {
+  display: inline;
+  font-weight: 700;
+  text-decoration: underline;
+  color: #92082b;
+} 
+
+.list-of-movies section a:hover {
+  color: #27bd3b;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 4s;
+}
+
 
 @media (max-width: 1200px) {
 

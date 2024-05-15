@@ -260,7 +260,7 @@ const renderMainSections = ({header}) => {
         </a>
       </header>
       
-      <div>
+      <div class="movie-section-main-content">
         <i
           id="prev-category"
           class="ph ph-caret-left"
@@ -324,68 +324,21 @@ const renderMovieListItems = (movie) => {
 
         <p>
           ${movie.overview.slice(0, 100)}...
-          <a href="">continuar</a>
+          <a id="continue-reading" href="https://example.com/" target="_blank">ler mais</a> 
         </p>
 
-        <div>
+
+        <div
           <img
             src="assets/imdb.svg"
             alt="Logo do IMDB - base de dados online de informação sobre cinema, TV, música e games"
           >
-
           <span>${movie.vote_average.toFixed(1)} / 10</span>
         </div>
       </section>
     </li>
   `
 }
-
-/*
-
-adult
-: 
-false
-backdrop_path
-: 
-"/bwj3rK2hc65eLwaQWUpendaphlE.jpg"
-genre_ids
-: 
-[99]
-id
-: 
-1280368
-original_language
-: 
-"es"
-original_title
-: 
-"Operación Esperanza: Los niños perdidos en el Amazonas"
-overview
-: 
-""
-popularity
-: 
-55.014
-poster_path
-: 
-"/uBOS7RbRFmEkXQ98drgL9H4jjXc.jpg"
-release_date
-: 
-"2024-04-26"
-title
-: 
-"Operación Esperanza: Los niños perdidos en el Amazonas"
-video
-: 
-false
-vote_average
-: 
-9.667
-vote_count
-: 
-12
-
-*/
 
 let main = document.getElementById('movie-sections')
 main.innerHTML += movie_sections.map(section => renderMainSections(section)).join(' ')
@@ -398,3 +351,5 @@ movie_sections.map(({header}) => {
     ul.innerHTML = results.map((movie) => renderMovieListItems(movie)).join('')
   })
 })
+
+
