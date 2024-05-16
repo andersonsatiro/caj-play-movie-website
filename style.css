@@ -419,11 +419,10 @@ ul {
   color: #92082b;
 } 
 
-.list-of-movies section a:hover {
-  color: #27bd3b;
-  font-weight: 800;
-  cursor: pointer;
-  transition: 4s;
+.list-of-movies .movie-review {
+  display: flex;
+  align-items: center;
+  gap: .625rem;
 }
 
 
