@@ -314,18 +314,12 @@ movie_sections.map(({header}) => {
   APICall(header.URL_request)
   .then(({ results }) => {
     const movies_with_description = results.filter((movie) => movie.overview !== "") 
-    console.log(movies_with_description.length)
     ul.innerHTML = movies_with_description.map((movie) => renderMovieListItems(movie)).join('')
   })
 })
 
 const setNumberMoviesPerScroll = (length) => {
-  const number_of_movies = length % 2 === 0 ? 5 : 6
-  const screen_width = window.innerWidth
-  
-  screen_width < 1000 && (number_visible_movies -= 2)
-  screen_width < 820 && (number_visible_movies -= 4)
-  screen_width < 630 && (number_visible_movies = 1)
+
   return number_of_movies
 }
 
@@ -336,7 +330,15 @@ const createMovieScrollHandler = () => {
     const list_movies = document.querySelectorAll(`#${ulID} li`)
     const li_width = list_movies[0].offsetWidth + 32
 
-    const number_visible_movies = setNumberMoviesPerScroll(list_movies.length)
+    let number_visible_movies = 5
+    const screen_width = window.innerWidth
+    
+    screen_width < 1450 && (number_visible_movies = 4)
+    screen_width < 980 && (number_visible_movies = 3)
+    screen_width < 750 && (number_visible_movies = 2)
+    screen_width < 530 && (number_visible_movies = 1)
+
+    console.log(current_index)
 
     direction === "next"
       ? current_index++
@@ -346,6 +348,10 @@ const createMovieScrollHandler = () => {
       Math.max(current_index, 0),
       Math.floor(list_movies.length / number_visible_movies)
     )
+
+    if(current_index >= list_movies.length / number_visible_movies){
+      return
+    }
 
     const translateValue = -(current_index * number_visible_movies) * li_width;
     for(let i = 0; i < list_movies.length; i++){
