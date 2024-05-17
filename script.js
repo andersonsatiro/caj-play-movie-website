@@ -313,9 +313,21 @@ movie_sections.map(({header}) => {
 
   APICall(header.URL_request)
   .then(({ results }) => {
-    ul.innerHTML = results.map((movie) => renderMovieListItems(movie)).join('')
+    const movies_with_description = results.filter((movie) => movie.overview !== "") 
+    console.log(movies_with_description.length)
+    ul.innerHTML = movies_with_description.map((movie) => renderMovieListItems(movie)).join('')
   })
 })
+
+const setNumberMoviesPerScroll = (length) => {
+  const number_of_movies = length % 2 === 0 ? 5 : 6
+  const screen_width = window.innerWidth
+  
+  screen_width < 1000 && (number_visible_movies -= 2)
+  screen_width < 820 && (number_visible_movies -= 4)
+  screen_width < 630 && (number_visible_movies = 1)
+  return number_of_movies
+}
 
 const createMovieScrollHandler = () => {
   let current_index = 0;
@@ -324,13 +336,8 @@ const createMovieScrollHandler = () => {
     const list_movies = document.querySelectorAll(`#${ulID} li`)
     const li_width = list_movies[0].offsetWidth + 32
 
-    const screen_width = window.innerWidth
-    let number_visible_movies = 6
+    const number_visible_movies = setNumberMoviesPerScroll(list_movies.length)
 
-    screen_width < 1000 && (number_visible_movies = 3)
-    screen_width < 820 && (number_visible_movies = 2)
-    screen_width < 630 && (number_visible_movies = 1)
-    
     direction === "next"
       ? current_index++
       : current_index--
@@ -371,8 +378,10 @@ movie_sections.map(({header}, index) => {
           break;
         case 1:
           categoryScrollFromBrazil("brazilian-movies-list", "next")
+          break;
         case 2:
           categoryScrollForYou("movies-for-you-list", "next")
+          break;
         default:
           break;
       }
