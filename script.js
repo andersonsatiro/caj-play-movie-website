@@ -13,6 +13,8 @@ const movie_sections = [
       class: "trending-movies-section",
       ul_ID: "trending-movies-list",
       ul_class: "list-of-movies",
+      button_prev: "prev-trending",
+      button_next: "next-trending",
       icon_class: "ph ph-fire fire",
       title: "Em alta no mundo",
       color_one: "#2203FF",
@@ -26,6 +28,8 @@ const movie_sections = [
       class: "brazilian-movies-section",
       ul_ID: "brazilian-movies-list",
       ul_class: "list-of-movies",
+      button_prev: "prev-brazilian",
+      button_next: "next-brazilian",
       icon_class: "ph ph-island island",
       title: "Da terra do cajú",
       color_one: "#002776",
@@ -39,6 +43,8 @@ const movie_sections = [
       class: "movies-section-for-you",
       ul_ID: "movies-for-you-list",
       ul_class: "list-of-movies",
+      button_prev: "prev-for-you",
+      button_next: "next-for-you",
       icon_class: "ph ph-monitor-play monitor-play",
       title: "Da cajúplay para você",
       color_one: "#2203FF",
@@ -220,7 +226,7 @@ const renderMainSections = ({header}) => {
       
       <div class="movie-section-main-content">
         <i
-          id="prev-trending"
+          id="${header.button_prev}"
           class="ph ph-caret-left"
         >
         </i>
@@ -229,7 +235,7 @@ const renderMainSections = ({header}) => {
         </ul>
 
         <i
-          id="next-trending"
+          id="${header.button_next}"
           class="ph ph-caret-right"
         >
         </i>
@@ -315,12 +321,11 @@ const createMovieScrollHandler = () => {
   let current_index = 0;
 
   return(ulID, direction) => {
-    console.log("entrou")
     const list_movies = document.querySelectorAll(`#${ulID} li`)
     const li_width = list_movies[0].offsetWidth + 32
 
     const screen_width = window.innerWidth
-    let number_visible_movies = 4
+    let number_visible_movies = 6
 
     screen_width < 1000 && (number_visible_movies = 3)
     screen_width < 820 && (number_visible_movies = 2)
@@ -336,7 +341,6 @@ const createMovieScrollHandler = () => {
     )
 
     const translateValue = -(current_index * number_visible_movies) * li_width;
-    
     for(let i = 0; i < list_movies.length; i++){
       list_movies[i].style.transform = `translateX(${translateValue}px)`;
     }  
@@ -344,7 +348,9 @@ const createMovieScrollHandler = () => {
 }
 
 const preferredCategoryScroll  = createMovieScrollHandler();
-
+const trendingCategoryScroll = createMovieScrollHandler();
+const categoryScrollFromBrazil = createMovieScrollHandler();
+const categoryScrollForYou = createMovieScrollHandler();
 
 const next_category_list = document.getElementById('next-category')
 next_category_list.addEventListener('click',
@@ -356,5 +362,38 @@ prev_category_list.addEventListener('click',
   () => preferredCategoryScroll("movie-categorie-list", "prev")
 )
 
+movie_sections.map(({header}, index) => {
+  document.getElementById(header.button_next).addEventListener('click',
+    () => {
+      switch (index) {
+        case 0:
+          trendingCategoryScroll("trending-movies-list", "next")
+          break;
+        case 1:
+          categoryScrollFromBrazil("brazilian-movies-list", "next")
+        case 2:
+          categoryScrollForYou("movies-for-you-list", "next")
+        default:
+          break;
+      }
+    } 
+  )
 
-
+  document.getElementById(header.button_prev).addEventListener('click',
+  () => {
+    switch (index) {
+      case 0:
+        trendingCategoryScroll("trending-movies-list", "prev")
+        break;
+      case 1:
+        categoryScrollFromBrazil("brazilian-movies-list", "prev")
+        break;
+      case 2:
+        categoryScrollForYou("movies-for-you-list", "prev")
+        break;
+      default:
+        break;
+    }
+  } 
+)
+})

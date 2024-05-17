@@ -375,6 +375,10 @@ ul {
   max-width: 95%;
 }
 
+.list-of-movies li {
+  transition: 1s;
+}
+
 .movie-section-main-content {
   display: flex;
   align-items: center;
