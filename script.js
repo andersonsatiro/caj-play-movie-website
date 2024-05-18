@@ -1,7 +1,8 @@
-const api_key = '9d65af5d57fca2c19373db5767188390'
+const api_key = '...'
 const base_URL = 'https://api.themoviedb.org/3/'
 const parameters = `api_key=${api_key}&language=pt-BR`
 const image_base_URL = 'https://image.tmdb.org/t/p/w500'
+const github_token = '123'
 
 const ID_movies_selected_banner = [ '785976', '446159', '755339', '7343']
 let banner_movies = []
@@ -59,7 +60,7 @@ const APICall = async (url) => {
   try{
     const response = await fetch(url)
     if(!response.ok){
-      throw new Error('Erro ao fazer a busca por filmes')
+      throw new Error('Erro ao fazer a busca')
     }
     return response.json()
   } catch(error){
@@ -266,7 +267,7 @@ const reorderingReleaseData = (date) => {
   const year = date.slice(0,4)
   const month = months[parseInt(date.slice(5,7), 10) - 1]
 
-  return `Lançado em ${month} de ${year}`
+  return `${month} de ${year}`
 }
 
 const renderMovieListItems = (movie) => {
@@ -281,7 +282,7 @@ const renderMovieListItems = (movie) => {
 
       <section>
         <time datetime="${movie.release_date}">
-          ${reorderingReleaseData(movie.release_date)}
+          Lançado em ${reorderingReleaseData(movie.release_date)}
         </time>
 
         <h3>${movie.title}</h3>
@@ -337,8 +338,6 @@ const createMovieScrollHandler = () => {
     screen_width < 980 && (number_visible_movies = 3)
     screen_width < 750 && (number_visible_movies = 2)
     screen_width < 530 && (number_visible_movies = 1)
-
-    console.log(current_index)
 
     direction === "next"
       ? current_index++
@@ -411,4 +410,56 @@ movie_sections.map(({header}, index) => {
     }
   } 
 )
+})
+
+const callToGithubAPI = async (url) => {
+  try {
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Authorization': `token ${github_token}`
+      }
+    })
+
+    if(!response.ok){
+      throw new Error('Erro ao fazer a busca')
+    }
+
+    return response.json()
+
+  } catch(error){
+    console.error("Encontramos um erro ao buscar dados na API do Github", error)
+    throw error
+  }
+  
+}
+
+callToGithubAPI('https://api.github.com/users/andersonsatiro').then(data => {
+  const user_description = document.getElementById('user-description')
+  user_description.innerHTML += data.bio
+
+  const user_photo = document.getElementById('user-photo')
+  user_photo.setAttribute('src', data.avatar_url)
+})
+
+callToGithubAPI('https://api.github.com/repos/andersonsatiro/cajuplay-movie-website').then(data => {
+
+  const creation_date = document.getElementById('repo-creation-date')
+  creation_date.textContent = reorderingReleaseData(data.created_at)
+
+  const visibility = document.getElementById('repo-visibility')
+  visibility.textContent = data.visibility === "public" ? "público" : "privado"
+
+  const repo_name = document.getElementById('repo-name')
+  repo_name.textContent = data.full_name
+  repo_name.setAttribute('href', `https://github.com/${data.full_name}`)
+
+  const repo_language = document.getElementById('repo-language')
+  repo_language.textContent = data.language
+
+  const last_update = document.getElementById('repo-last-update')
+  last_update.textContent = reorderingReleaseData(data.updated_at)
+
+  const link_to_github = document.getElementById('link-to-github')
+  link_to_github.setAttribute('href', data.owner.html_url)
 })
