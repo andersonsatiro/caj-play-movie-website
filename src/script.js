@@ -103,7 +103,7 @@ const changeBannerMovie = (movie_number) => {
 }
 
 const renderBannerItem = (movie, index) => {
-  return  `
+  return `
     <li
       style='background-image: url(${image_base_URL}${movie.backdrop_path})'
       class="banner"
@@ -141,19 +141,19 @@ const renderBannerItem = (movie, index) => {
 
       <aside class="pagination-box">
         <div class="movie-options banner1">
-          <span onclick="changeBannerMovie(1)">1</span>
+          <span class="banner-option" data-movie-number="1">1</span>
         </div>
 
         <div class="movie-options banner2">
-          <span onclick="changeBannerMovie(2)">2</span>
+          <span class="banner-option" data-movie-number="2">2</span>
         </div>
 
         <div class="movie-options banner3">
-          <span onclick="changeBannerMovie(3)">3</span>
+          <span class="banner-option" data-movie-number="3">3</span>
         </div>
 
         <div class="movie-options banner4">
-          <span onclick="changeBannerMovie(4)">4</span>
+          <span class="banner-option" data-movie-number="4">4</span>
         </div>
       </aside>
 
@@ -167,6 +167,14 @@ const createBannerItems = () => {
   ul.innerHTML = banner_movies.map((movie, index) => renderBannerItem(movie, index))
   .join(' ')
   changeBannerMovie(1)
+
+  const bannerOptions = document.querySelectorAll('.banner-option')
+  bannerOptions.forEach(option => {
+    option.addEventListener('click', (event) => {
+      const movieNumber = event.target.getAttribute('data-movie-number')
+      changeBannerMovie(Number(movieNumber))
+    })
+  })
 }
 
 Promise.all(ID_movies_selected_banner.map((movieID) => {
@@ -319,11 +327,6 @@ movie_sections.map(({header}) => {
   })
 })
 
-const setNumberMoviesPerScroll = (length) => {
-
-  return number_of_movies
-}
-
 const createMovieScrollHandler = () => {
   let current_index = 0;
 
@@ -335,9 +338,9 @@ const createMovieScrollHandler = () => {
     const screen_width = window.innerWidth
     
     screen_width < 1450 && (number_visible_movies = 4)
-    screen_width < 980 && (number_visible_movies = 3)
-    screen_width < 750 && (number_visible_movies = 2)
-    screen_width < 530 && (number_visible_movies = 1)
+    screen_width < 1200 && (number_visible_movies = 3)
+    screen_width < 980 && (number_visible_movies = 2)
+    screen_width < 740 && (number_visible_movies = 1)
 
     direction === "next"
       ? current_index++
