@@ -278,7 +278,7 @@ const reorderingReleaseData = (date) => {
   return `${month} de ${year}`
 }
 
-const renderMovieListItems = (movie) => {
+const renderMovieListItems = (movie, ul_ID) => {
   return `
     <li>
       <div class="poster">
@@ -295,6 +295,16 @@ const renderMovieListItems = (movie) => {
 
         <h3>${movie.title}</h3>
 
+        ${ul_ID === "brazilian-movies-list"
+          ? `
+            <div class="brazilian-movie-stamp">
+              <img src="assets/flag-brasil.svg" alt="Bandeira do Brasil"/>
+              <span>Nacional</span>
+            </div>
+          `
+          : ''
+        }
+      
         <p>
           ${movie.overview.slice(0, 100)}...
           <a id="continue-reading" href="https://example.com/" target="_blank">ler mais</a> 
@@ -323,7 +333,7 @@ movie_sections.map(({header}) => {
   APICall(header.URL_request)
   .then(({ results }) => {
     const movies_with_description = results.filter((movie) => movie.overview !== "") 
-    ul.innerHTML = movies_with_description.map((movie) => renderMovieListItems(movie)).join('')
+    ul.innerHTML = movies_with_description.map((movie) => renderMovieListItems(movie, header.ul_ID)).join('')
   })
 })
 

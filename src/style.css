@@ -416,6 +416,21 @@ a:link, a:visited, a:active {
   font-weight: 700;
 }
 
+.brazilian-movie-stamp {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.brazilian-movie-stamp img {
+  width: 1.5rem;
+}
+
+.brazilian-movie-stamp span {
+  font-size: 0.75rem;
+  color: #111827;
+}
+
 .list-of-movies section a {
   display: inline;
   font-weight: 700;
