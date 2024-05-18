@@ -1,8 +1,8 @@
-const api_key = '...'
+const api_key = process.env.API_KEY
 const base_URL = 'https://api.themoviedb.org/3/'
 const parameters = `api_key=${api_key}&language=pt-BR`
 const image_base_URL = 'https://image.tmdb.org/t/p/w500'
-const github_token = '123'
+const github_token = process.env.GITHUB_TOKEN
 
 const ID_movies_selected_banner = [ '785976', '446159', '755339', '7343']
 let banner_movies = []
@@ -116,7 +116,7 @@ const renderBannerItem = (movie, index) => {
           <div class="banner-movie-review">
             <a href="https://www.imdb.com/" target="_blank">
               <img
-              src="/assets/imdb.svg"
+              src="/src/assets/imdb.svg"
               alt="Logo do IMDB - base de dados online de informação sobre cinema, TV, música e games"
             >
             </a>
@@ -295,7 +295,7 @@ const renderMovieListItems = (movie) => {
 
         <div class="movie-review">
           <img
-            src="assets/imdb.svg"
+            src="/src/assets/imdb.svg"
             alt="Logo do IMDB - base de dados online de informação sobre cinema, TV, música e games"
           >
         

@@ -1,2 +1,4 @@
-test.js
+node_modules/
 .env
+dist/
+test.js
