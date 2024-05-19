@@ -12,6 +12,7 @@ const movie_sections = [
   {
     header: {
       class: "trending-movies-section",
+      section_id: "em_alta",
       ul_ID: "trending-movies-list",
       ul_class: "list-of-movies",
       button_prev: "prev-trending",
@@ -27,6 +28,7 @@ const movie_sections = [
   {
     header: {
       class: "brazilian-movies-section",
+      section_id: "nacionais",
       ul_ID: "brazilian-movies-list",
       ul_class: "list-of-movies",
       button_prev: "prev-brazilian",
@@ -42,6 +44,7 @@ const movie_sections = [
   {
     header: {
       class: "movies-section-for-you",
+      section_id: "para_voce",
       ul_ID: "movies-for-you-list",
       ul_class: "list-of-movies",
       button_prev: "prev-for-you",
@@ -213,9 +216,9 @@ const renderMainSections = ({header}) => {
   const hr_gradient = header.color_three !== ""
     ? `background-image: linear-gradient(to right, ${header.color_one}, ${header.color_two}, ${header.color_three})`
     : ''
-
+    
   return `
-    <section class="${header.class}">
+    <section id="${header.section_id}" class="${header.class}">
       <header>
         <i
           class="${header.icon_class}"
