@@ -580,6 +580,13 @@ footer address {
   }
 }
 
+@media (max-width: 1000px){
+  #repo-infos {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 768px){
 
   .header-container {
@@ -719,6 +726,12 @@ footer address {
 
   #movie-sections header h2, .repo-header h2 {
     font-size: 1.2rem;
+  }
+
+  .creator-info p, .copyright {
+    font-size: .8rem;
+    max-width: 18rem;
+    text-align: center;
   }
 }
 
