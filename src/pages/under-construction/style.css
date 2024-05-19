@@ -56,3 +56,40 @@ button:hover {
   cursor: pointer;
   background-color: #F43F5E;
 }
+
+@media (max-width: 800px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  img {
+    width: 3rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    line-height: 1.7rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 380px) {
+  h1 {
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+  }
+
+  p {
+    font-size: 1rem;
+    font-weight: 300;
+  }
+}
