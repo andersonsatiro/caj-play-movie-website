@@ -2,11 +2,11 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8">
-    <meta name="description" content="">
+    <meta name="description" content="Cajúplay - o website dos seus filmes favoritos!">
     <meta name="author" content="Anderson Paiva">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cajúplay - movie website</title>
+    <title>Cajúplay - home</title>
 
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="/dist/bundle.js" defer></script>
@@ -30,7 +30,7 @@
 
         <div class="search-input-container">
           <input type="text" placeholder="O que você está procurando?">
-          <i class="ph-bold ph-magnifying-glass"></i>
+          <i id="search-by-name" class="ph-bold ph-magnifying-glass"></i>
         </div>
 
         <div class="user-data">
@@ -55,15 +55,19 @@
           <hr>
     
           <a>
-            <p>ver mais</p>
-            <i class="ph ph-caret-right"></i>
+            <p
+              onclick="window.location.href = 'http://127.0.0.1:5500/src/pages/under-construction/index.html'"
+            >
+            ver mais
+          </p>
+            <i class="ph ph-caret-right arrow"></i>
           </a>
         </header>
         
         <div>
           <i
             id="prev-category"
-            class="ph ph-caret-left"
+            class="ph ph-caret-left arrow"
           >
           </i>
 
@@ -72,7 +76,7 @@
 
           <i
             id="next-category"
-            class="ph ph-caret-right"
+            class="ph ph-caret-right arrow"
           >
           </i>
         </div>

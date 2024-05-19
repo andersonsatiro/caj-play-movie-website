@@ -272,10 +272,11 @@ a:link, a:visited, a:active {
   font-size: 2rem;
 }
 
-#movie-sections section div i:hover {
+.arrow:hover {
   color: #92082b;
   cursor: pointer;
 }
+
 
 #movie-sections header, .repo-header {
   display: flex;
@@ -337,11 +338,15 @@ a:link, a:visited, a:active {
   max-width: 95%;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  transition:  1s;
+  transition: 1s;
 
   color: white;
   border-radius: .2rem;
   background-color: #2203FF;
+}
+
+#movie-categorie-list li:hover {
+  background-color: #0007B6;
 }
 
 #movie-categorie-list main {
@@ -363,6 +368,10 @@ a:link, a:visited, a:active {
 #movie-categorie-list p {
   font-size: .9rem;
   font-weight: 300;
+}
+
+#movie-sections li:hover {
+  cursor: pointer;
 }
 
 /* MAIN - LIST MOVIES*/
@@ -393,8 +402,16 @@ a:link, a:visited, a:active {
 }
 
 .list-of-movies .poster img {
-  max-width: 100%;
   border-radius: .2rem;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease;
+}
+
+.list-of-movies .poster img:hover {
+  border-radius: .2rem;
+  transform: scale(.95);
+  cursor: pointer;
 }
 
 .list-of-movies section {

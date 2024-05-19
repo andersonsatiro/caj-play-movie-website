@@ -72,6 +72,11 @@ const APICall = async (url) => {
   }
 }
 
+const search_by_name = document.getElementById('search-by-name')
+search_by_name.addEventListener('click', () => {
+  window.location.href = 'http://127.0.0.1:5500/src/pages/under-construction/index.html'
+})
+
 const changeBannerMovie = (movie_number) => {
   movie_number--
   const list_items = document.getElementsByClassName('banner') 
@@ -136,7 +141,7 @@ const renderBannerItem = (movie, index) => {
           ${movie.overview}
         </p>
         
-        <button>
+        <button onclick="window.location.href = 'http://127.0.0.1:5500/src/pages/under-construction/index.html'">
           <i class="ph-fill ph-play-circle"></i>
           <span>SAIBA MAIS</span>
         </button>
@@ -192,7 +197,7 @@ Promise.all(ID_movies_selected_banner.map((movieID) => {
 
 const renderCategoryMovieCard = ({name}) => {
   return `
-    <li>
+    <li onclick="window.location.href = 'http://127.0.0.1:5500/src/pages/under-construction/index.html'">
     <span></span>
 
     <main>
@@ -230,7 +235,9 @@ const renderMainSections = ({header}) => {
 
         <hr style="${hr_gradient}">
         
-        <a>
+        <a
+          onclick="window.location.href='http://127.0.0.1:5500/src/pages/under-construction/index.html'"
+        >
           <p>ver mais</p>
           <i class="ph ph-caret-right"></i>
         </a>
@@ -239,7 +246,7 @@ const renderMainSections = ({header}) => {
       <div class="movie-section-main-content">
         <i
           id="${header.button_prev}"
-          class="ph ph-caret-left"
+          class="ph ph-caret-left arrow"
         >
         </i>
 
@@ -248,7 +255,7 @@ const renderMainSections = ({header}) => {
 
         <i
           id="${header.button_next}"
-          class="ph ph-caret-right"
+          class="ph ph-caret-right arrow"
         >
         </i>
       </div>
@@ -283,7 +290,7 @@ const reorderingReleaseData = (date) => {
 
 const renderMovieListItems = (movie, ul_ID) => {
   return `
-    <li>
+    <li onclick="window.location.href='http://127.0.0.1:5500/src/pages/under-construction/index.html'">
       <div class="poster">
         <img
           src="${image_base_URL}${movie.poster_path}"
@@ -310,7 +317,14 @@ const renderMovieListItems = (movie, ul_ID) => {
       
         <p>
           ${movie.overview.slice(0, 100)}...
-          <a id="continue-reading" href="https://example.com/" target="_blank">ler mais</a> 
+          <a
+            id="continue-reading"
+            href="https://example.com/"
+            target="_blank"
+            onclick="window.location.href='http://127.0.0.1:5500/src/pages/under-construction/index.html'"
+          >
+            ler mais
+          </a> 
         </p>
 
 
